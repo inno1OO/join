@@ -14,7 +14,7 @@ const methodOverride = require('method-override');
 //     { name: 'Introduction to OOP in C#',description:'C# course for learning all OOP concepts',  category: categories[0],instructor:'Sridevi', price: 36.99}
 // ]).save();
 
-
+const categories = ['Programming', 'Graphic Design', 'Database'];
 
 
 exports.saveCourse = (req, res) => {
@@ -26,7 +26,7 @@ exports.saveCourse = (req, res) => {
 exports.getAllCourses = async(req, res) => {
     const courses = await Course.find({});
     //console.log(courses);
-    res.render('index', {pageTitle:'Home', cat:'Unknown',courses:courses});
+    res.render('index', {pageTitle:'Home', cat: categories,courses:courses});
 }
 
 

@@ -1,12 +1,18 @@
-<div class="pt-lg-12 pb-lg-3 pt-8 pb-6">
+<% 
+const ids =['sliderFirstControls', 'sliderSecondControls', 'sliderThirdControls'];
+const position = ['pt-lg-12 pb-lg-3 pt-8 pb-6', 'pb-lg-3 pt-lg-3', 'pb-lg-8 pt-lg-3 py-6'];
+const klas = ['sliderFirst','sliderSecond','sliderThird'];
+var loop = 0;
+for(let cate in cat){ %>
+<div class="<%= position[loop] %>">
     <div class="container">
         <div class="row mb-4">
             <div class="col">
-                <h2 class="mb-0">Recommended to you</h2>
+                <h2 class="mb-0"><%= cat[cate] %></h2>
             </div>
         </div>
         <div class="position-relative">
-            <ul class="controls " id="sliderFirstControls">
+            <ul class="controls " id="<%= ids[loop] %>">
                 <li class="prev">
                     <i class="fe fe-chevron-left"></i>
                 </li>
@@ -14,7 +20,7 @@
                     <i class="fe fe-chevron-right"></i>
                 </li>
             </ul>
-            <div class="sliderFirst">
+            <div class="<%= klas[loop] %>">
                 <div class="item">
                     <!-- Card -->
                     <div class="card  mb-4 card-hover">
@@ -369,3 +375,6 @@
         </div>
     </div>
 </div>
+
+
+<% loop += 1; } %>
