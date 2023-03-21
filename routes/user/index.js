@@ -27,6 +27,14 @@ res.render('sign-up');
 router.post('/signup',Student.signUp);
 
 
+router.get('/signin',(req,res,next)=>{
+    res.render('sign-in');
+    
+ })
+
+ router.post('/signin',Student.signIn);
+
+
 
 
 module.exports = router;

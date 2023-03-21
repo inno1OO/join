@@ -26,10 +26,34 @@ exports.getStudent = (req, res) => {
 
 // }
 
+exports.signIn=async(req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  // validate user
+  const student = await Student.findOne({ email, password });
+
+  if(!student) {
+    // user not exists
+    return next(new Error('Invalid credentials'));
+  }
+  else{
+    req.session.email = req.body.email;
+    req.session.password =student.password;
+    req.session._id =student._id;
+console.log(req.session);
+    
+    res.redirect('/');
+  }
+
+}
 
 
 
-exports.signUp=(req, res, send)=>{
+
+
+
+exports.signUp=async(req, res, send)=>{
     Student.findOne({
         email: req.body.email
       }).then(student => {
