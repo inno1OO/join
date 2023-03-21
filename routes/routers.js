@@ -10,7 +10,7 @@ router.use(express.urlencoded({ extended: true }));
 router.use(methodOverride('_method'));
 
 const Student = require('../models/student');
-const Course = require('../models/course');
+const Course = require('../controller/course');
 
 const categories = ['Programming', 'Graphic Design', 'Database'];
 
@@ -35,6 +35,7 @@ router.post('/students',  async(req, res) => {
     ///redirect to login page
     console.log(req.body);
    // res.redirect('/students');
+
    res.send("new user added");
 
 });
@@ -42,11 +43,14 @@ router.post('/students',  async(req, res) => {
 
 
 //get all courses
-router.get('/courses', async (req, res) => {
-    const courses = await Course.find({});
-    //res.send(courses);
-     res.render('index', { courses })
-})
+// router.get('/courses', async (req, res) => {
+//     // const courses = await Course.find({});
+//     // //res.send(courses);
+//     //  res.render('index', { courses })
+    
+// })
+
+router.get('/courses', Course.getAllCourses)
 
 
   //add a course for a specific student
