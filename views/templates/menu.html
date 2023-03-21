@@ -106,16 +106,16 @@
 						aria-labelledby="navbarBrowse"
 					>
 					
-						
+						<% for(let ele of cat) { %>
 						<li>
 							<a
-								href="pages/course-category.html"
+								href="course/<%= ele %>"
 								class="dropdown-item"
 							>
-								Mobile App
+								<%= ele %>
 							</a>
 						</li>
-					
+						<% } %>
 
 					</ul>
 				</li>
