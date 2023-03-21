@@ -6,15 +6,27 @@ const methodOverride = require('method-override');
 
 // router.use(express.urlencoded({ extended: true }));
 // router.use(methodOverride('_method'));
+// const categories = ['Programming', 'Graphic Design', 'Database'];
+
+// Course.insertMany([
+//     { name: 'JavaScript For Beginner', description:' It a java course for new programmer',  category: categories[0], instructor:'Sridevi', price: 64.99  },
+//     { name: 'Java From Scratch',description:' It a javaScript course for new programmer',  category: categories[0], instructor:'Sridevi', price: 45.99},
+//     { name: 'Introduction to OOP in C#',description:'C# course for learning all OOP concepts',  category: categories[0],instructor:'Sridevi', price: 36.99}
+// ]).save();
+
+const categories = ['Programming', 'Graphic Design', 'Database'];
+
 
 exports.saveCourse = (req, res) => {
     let course = new Course(req.body)
     course.save()
-    alert("New Course added")
+    //alert("New Course added")
 }
 
-exports.getAllCourses = (req, res) => {
-    let courseList = Course.find({})
-    console.log(courseList.all)
-    res.render('templates/course_category_list', {courses:courseList})
+exports.getAllCourses = async(req, res) => {
+    const courses = await Course.find({});
+    //console.log(courses);
+    res.render('index', {pageTitle:'Home', cat: categories,courses:courses});
 }
+
+

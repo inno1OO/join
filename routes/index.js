@@ -4,15 +4,20 @@ const path = require('path')
 // const myRoute = require("./routers")
 const courseRoute = require("./course")
 const userRoute = require("./user")
-const categories = ['Programming', 'Graphic Design', 'Database'];
+const Course = require('../controller/course');
 
-router.get('/', (req, res) => {
-    res.render('index', {pageTitle:'Home', cat: categories})
-});
+router.get('/', Course.getAllCourses
+
+//(req, res) => 
+//{
+//     res.render('index', {pageTitle:'Home', cat: courseRoute.categories})
+// }
+
+);
 
 // router.use('/', myRoute );
 router.use('/course', courseRoute );
 router.use('/user', userRoute );
 
 
-module.exports = router
+module.exports = router;
