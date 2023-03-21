@@ -11,11 +11,7 @@ router.use(express.urlencoded({ extended: true }));
 router.use(methodOverride('_method'));
 
 const Student = require('../models/student');
-const Course = require('../models/course');
-
-router.use(session({
-  secret: 'top-secret', resave: false, saveUninitialized: true}));
-
+const Course = require('../controller/course');
 
 const categories = ['Programming', 'Graphic Design', 'Database'];
 
@@ -118,11 +114,14 @@ router.get('/dashboard', (req, res) => {
 });
 
 //get all courses
-router.get('/courses', async (req, res) => {
-    const courses = await Course.find({});
-    //res.send(courses);
-     res.render('index', { courses })
-})
+// router.get('/courses', async (req, res) => {
+//     // const courses = await Course.find({});
+//     // //res.send(courses);
+//     //  res.render('index', { courses })
+    
+// })
+
+router.get('/courses', Course.getAllCourses)
 
 
   //add a course for a specific student

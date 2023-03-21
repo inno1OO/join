@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
-<!-- Favicon icon-->
+Favicon icon
 <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon/favicon.ico">
 
 
@@ -40,37 +40,37 @@
 <script>
 
 
-$(document).ready(function () {
+// $(document).ready(function () {
     
-    $("#myForm").submit(function (event) {
-      event.preventDefault(); // prevent the form from submitting normally
-      // get the values from the input fields
-      var name = $("#name").val();
-	  var email = $("#email").val();
-	  var name = $("#password").val();
+//     $("#myForm").submit(function (event) {
+//       event.preventDefault(); // prevent the form from submitting normally
+//       // get the values from the input fields
+//       var name = $("#name").val();
+// 	  var email = $("#email").val();
+// 	  var name = $("#password").val();
 
 
-    //   var gender = $("input[name='gender']:checked").val();
+//     //   var gender = $("input[name='gender']:checked").val();
 
-      // send a POST request to the server using AJAX
-      $.ajax({
-        url: "/students",
-        method: "POST",
-        data: {
-          name: name,
-          email: email,
-		  password:password
-        }
-      }).done(function(response){
-        $('#myForm').after('<p>'+ response +'</p>');
+//       // send a POST request to the server using AJAX
+//       $.ajax({
+//         url: "/signup",
+//         method: "POST",
+//         data: {
+//           name: name,
+//           email: email,
+// 		  password:password
+//         }
+//       }).done(function(response){
+//         $('#myForm').after('<p>'+ response +'</p>');
 
-		// console.log(response)
+// 		// console.log(response)
 
-      }).fail (function(e) {
-		alert("The request generate error"+e);
-		});
-    });
-  });
+//       }).fail (function(e) {
+// 		alert("The request generate error"+e);
+// 		});
+//     });
+//   });
 
 </script>
 
@@ -104,7 +104,7 @@ $(document).ready(function () {
 								<a href="sign-in.html" class="ms-1">Sign in</a></span>
 						</div>
 						<!-- Form -->
-						<form id="myForm" action="/students" method="post">
+						<form id="myForm" action="/user/signup" method="post">
 								<!-- Username -->
 							<div class="mb-3">
 								<label for="name" class="form-label">User Name</label>

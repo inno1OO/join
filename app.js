@@ -14,7 +14,7 @@ app.use('/assets', express.static(path.join(__dirname, '/public/assets/')))
 app.set('view engine', 'html')
 app.engine('html', ejs.renderFile)
 
-mongoose.connect('mongodb://localhost:27017/joindb', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://127.0.0.1:27017/joindb', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("MONGO CONNECTION SUCCESSFUL!!")
     })
