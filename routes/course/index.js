@@ -10,6 +10,6 @@ const Course = require('../../controller/course');
 
 // router.get('/', Course.getAllCourses);
 
-
+router.post('/:category',Course.displayByCategory);
 
 module.exports = router

@@ -30,3 +30,21 @@ exports.getAllCourses = async(req, res) => {
 }
 
 
+exports.displayByCategory=async (req, res) => {
+    const category = req.params.category;
+  
+    try {
+    
+      const result = await Course.find({ category: category });
+  
+      res.json(result);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+
+    // console.log(category);
+    // res.send('Good');
+  
+  }
+  

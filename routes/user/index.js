@@ -3,6 +3,9 @@ const router = express.Router()
 const path = require('path')
 
 const Student = require('../../controller/student');
+
+const Course = require('../../controller/course');
+// const Course = require('../../models/course');
 router.get('/', (req, res) => {
     // res.render('user', {pageTitle:'User', cat: Course.categories})
     console.log()
@@ -33,6 +36,10 @@ router.get('/signin',(req,res,next)=>{
  })
 
  router.post('/signin',Student.signIn);
+
+
+ router.post('/enroll/:courseId',Student.enrollCourse);
+
 
 
 
