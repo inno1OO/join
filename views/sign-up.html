@@ -3,6 +3,43 @@
 <script>
 
 
+
+// JavaScript code
+const form = document.querySelector('#myForm');
+const responseElement = document.querySelector('#response');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // prevent the default form submission
+  const name = form.elements.name.value; // get the value of the input field
+  const email=form.elements.email.value;
+  const password=form.elements.password.value;
+  // send an AJAX request to the server
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/signup');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      responseElement.textContent = xhr.responseText; // set the response text in the <p> element
+    } else {
+      console.error('Request failed. Status code:', xhr.status);
+    }
+  };
+  xhr.send(JSON.stringify({ name: name, email:email, password:password }));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // $(document).ready(function () {
     
 //     $("#myForm").submit(function (event) {
@@ -110,6 +147,7 @@
 								</a>
 							</div>
 						</form>
+						<p id="response"></p>
 					</div>
 				</div>
 			</div>

@@ -158,6 +158,57 @@ exports.cartCourses=async (req, res) => {
   }
 }
 
+exports.readStudentCourseById=async (req, res) => {
+  try {
+    const student = await Student.findById(req.params.studentId).populate('courses');
+    if (!student) {
+      return res.status(404).send({ error: 'Student not found!' });
+    }
+    const course = student.courses.find(course => course._id.toString() === req.params.courseId);
+    if (!course) {
+      return res.status(404).send({ error: 'Course not found or student is not enrolled in this course!' });
+    }
+    res.send(course);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+
+
+// router.put('/students/:id/courses/:courseId', async (req, res) => {
+//   try {
+//     const studentId = req.params.id;
+//     const courseId = req.params.courseId;
+
+//     // Find the student by ID
+//     const student = await Student.findById(studentId);
+//     if (!student) {
+//       return res.status(404).json({ message: 'Student not found' });
+//     }
+
+//     // Find the course by ID
+//     const course = await Course.findById(courseId);
+//     if (!course) {
+//       return res.status(404).json({ message: 'Course not found' });
+//     }
+
+//     // Remove the course from the student's enroll course list
+//     const updatedStudent = await Student.findByIdAndUpdate(
+//       studentId,
+//       { $pull: { enrollCourses: courseId } },
+//       { new: true }
+//     );
+
+//     res.json(updatedStudent);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Server error' });
+//   }
+// });
+
+// module.exports = router;
+
 
 
 
