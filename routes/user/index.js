@@ -21,24 +21,21 @@ router.get('/', (req, res) => {
 
 // router.get('/signup',Student.signUp);
 
-router.get('/signup',(req,res,next)=>{
-res.render('sign-up');
-
-})
+router.get('/signup',(req,res,next)=>{res.render('sign-up');})
 
 
 router.post('/signup',Student.signUp);
 
 
-router.get('/signin',(req,res,next)=>{
-    res.render('sign-in');
-    
- })
+router.get('/signin',(req,res,next)=>{ res.render('sign-in'); })
 
  router.post('/signin',Student.signIn);
 
 
  router.post('/enroll/:courseId',Student.enrollCourse);
+
+
+ router.get('/students/courses', Student.cartCourses);
 
 
 

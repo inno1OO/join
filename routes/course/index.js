@@ -4,6 +4,8 @@ const path = require('path')
 const categories = ['Programming', 'Graphic Design', 'Database'];
 const Course = require('../../controller/course');
 const Cours = require('../../models/course');
+
+
 router.get('/', (req, res) => {
     res.render('course', {pageTitle:'Course', courses: Cours.getAllCourses})
 });
@@ -26,6 +28,8 @@ router.get('/:id', async (req, res) => {
 });
 
 module.exports = router;
+
+//Display course by Category
 router.post('/:category',Course.displayByCategory);
 
 module.exports = router

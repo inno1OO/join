@@ -1,4 +1,5 @@
 const Student = require('../models/student.js')
+const Course = require('../models/course');
 
 exports.saveStudents = (req, res) => {
     let studentSave = new student(req.body)
@@ -100,10 +101,22 @@ exports.signUp=async(req, res, send)=>{
 
 exports.enrollCourse=async (req,res,next)=>{
 
+  //const student = await Student.findById(req.session._id);
+  // const course = await Course.findById(req.params.courseId);
+
+
+  //console.log(req.session._id);
+
+  //console.log(student);
+  // console.log(course);
+
   if (req.session.email) {
 
     const student = await Student.findById(req.session._id);
     const course = await Course.findById(req.params.courseId);
+
+    console.log(student);
+    console.log(course);
     if (!student || !course) {
       return res.status(404).send({ error: 'Student or course not found!' });
     }else{
@@ -116,8 +129,35 @@ exports.enrollCourse=async (req,res,next)=>{
   }else{
     return res.redirect('/user/signin');
   }
+ // res.send("hello");
 
 }
+
+
+exports.signOut=async (req,res,next)=>{
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect('/');
+      }
+  })
+
+}
+
+
+exports.cartCourses=async (req, res) => {
+  try {
+    const student = await Student.findById(req.session._id).populate('course');
+    if (!student) {
+      return res.status(404).send({ error: 'Student not found!' });
+    }
+    res.send(student.courses);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
 
 
 
