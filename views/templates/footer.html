@@ -60,7 +60,69 @@
     
     <!-- Theme JS -->
     <script src="/assets/js/theme.min.js"></script>
-    
+    <script>
+        $(document).ready(function(){
+           
+            $.ajax({
+            url: '/user/get_session_data',
+            method: 'GET',
+            success: function(response) {
+                // response contains the session data
+                if (response != ' undefined') {
+                //    var x = document.getElementById('signInUpDiv');
+                //    x.classList.add('invisible');
+                
+                   var y = document.getElementById('userBlock');
+                   y.style.display = "block";
+
+                   var name = document.getElementById('nameId');
+                   var email = document.getElementById('emailId');
+                   email.innerText = response.email;
+                   name.innerText = response.name;
+                    // $('#signInUpDiv').hide();
+                    console.log('Session data:', response); 
+                }else{
+                   
+                   var x = document.getElementById('signInUpDiv');
+                   x.style.display = "block";
+                   console.log('Session  fdata:', response); 
+                //    var y = document.getElementById('userBlock');
+                //    y.classList.add('invisible');
+                    // $('#signInUpDiv').hide(); 
+                
+                }
+               
+               
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('Error:', errorThrown);
+            }
+        });
+        });
+     
+        $("#signInForm").submit(function(){
+            $.ajax({
+            url: '/user/signin',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                // response contains the session data
+                if (response.rep.trim() != ' invalid') {
+        
+               console.log('Wrong Username or Password!');
+             
+                }else{
+                    alert(response.rep);
+                }
+               
+               
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('Error:', errorThrown);
+            }
+        });
+        });
+    </script>
     </body>
     
     

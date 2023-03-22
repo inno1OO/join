@@ -34,14 +34,18 @@ exports.getCourseById = async (courseId) => {
     const course = await Course.findById({courseId})
   render('single-course', {course})  
 }
+
 exports.displayByCategory=async (req, res) => {
     const category = req.params.category;
   
     try {
     
-      const result = await Course.find({ category: category });
-  
-      res.json(result);
+      let result = await Course.find({ category: category });
+      if (result.length == 0) {
+        result = []
+      }
+      res.render('course-category', {pageTitle: 'course-category', courseCat : result, cat:categories})
+    //   res.json(result);
     } catch (err) {
       console.error(err);
       res.status(500).send('Internal Server Error');

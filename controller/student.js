@@ -36,14 +36,16 @@ exports.signIn=async(req, res, next) => {
 
   if(!student) {
     // user not exists
-    return next(new Error('Invalid credentials'));
+    // return next(new Error('Invalid credentials'));
+    res.json({rep:'invalid'});
+    
   }
   else{
     req.session.email = req.body.email;
     req.session.password =student.password;
     req.session._id =student._id;
 console.log(req.session);
-    
+   
     res.redirect('/');
   }
 
@@ -159,7 +161,14 @@ exports.cartCourses=async (req, res) => {
 }
 
 
-
+exports.getSessionData = (req, res) => {
+  let ses =  req.session ;
+  if (req.session.email) {
+    res.send(req.session);
+} else {
+    res.send('undefined');
+}
+}
 
 // async (req, res) => {
 

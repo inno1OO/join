@@ -109,7 +109,7 @@
 						<% for(let ele of cat) { %>
 						<li>
 							<a
-								href="course/<%= ele %>"
+								href="/course/category/<%= ele %>"
 								class="dropdown-item"
 							>
 								<%= ele %>
@@ -131,7 +131,8 @@
 					placeholder="Search Courses"
 				/>
 			</form>
-			<ul class="navbar-nav navbar-right-wrap ms-auto d-none d-lg-block">
+			
+			<ul class="navbar-nav navbar-right-wrap ms-auto d-none d-lg-block" id="userBlock" style="display: none !important;">
 				<li class="dropdown d-inline-block stopevent">
 					<a
 						class="btn btn-light btn-icon rounded-circle text-muted indicator indicator-primary"
@@ -243,8 +244,8 @@
 									/>
 								</div>
 								<div class="ms-3 lh-1">
-									<h5 class="mb-1">Annette Black</h5>
-									<p class="mb-0 text-muted">annette@geeksui.com</p>
+									<h5 class="mb-1" id="nameId"></h5>
+									<p class="mb-0 text-muted" id="emailId"></p>
 								</div>
 							</div>
 						</div>
@@ -280,6 +281,11 @@
 					</div>
 				</li>
 			</ul>
+
+			<div class="navbar-nav navbar-right-wrap ms-auto d-none d-lg-block" id="signInUpDiv" style="display: none !important;">
+				<a href="/user/signin"><button class="btn btn-xs btn-primary">Sign In</button></a>
+				<a href="/user/signup"><button class="btn btn-xs btn-success">Sign Up</button></a>
+			</div>
 		</div>
 	</div>
 </nav>

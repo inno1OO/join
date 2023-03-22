@@ -2,6 +2,7 @@ const express = require('express')
 const ejs = require('ejs')
 const app = express()
 const port = 3000;
+const session = require('express-session');
 const router = require("./routes")
 const mongoose = require('mongoose');
 const path = require('path')
@@ -23,7 +24,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/joindb', { useNewUrlParser: true, us
         console.log(err)
     })
 
-
+    app.use(session({
+        secret: 'top-secret', resave: false, saveUninitialized: true
+    }));
 
 //using the router
 app.use('/', router)

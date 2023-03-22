@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const path = require('path')
-
+const categories = ['Programming', 'Graphic Design', 'Database'];
 const Student = require('../../controller/student');
 
 const Course = require('../../controller/course');
@@ -21,13 +21,18 @@ router.get('/', (req, res) => {
 
 // router.get('/signup',Student.signUp);
 
-router.get('/signup',(req,res,next)=>{res.render('sign-up');})
+router.get('/signup',(req,res,next)=>{
+    res.render('sign-up', {pageTitle:'User Sign Up', cat:categories});
+})
 
 
 router.post('/signup',Student.signUp);
 
 
-router.get('/signin',(req,res,next)=>{ res.render('sign-in'); })
+router.get('/signin',(req,res,next)=>{ 
+    
+    res.render('sign-in', {pageTitle:'User Sign In', cat:categories}); 
+})
 
  router.post('/signin',Student.signIn);
 
@@ -37,6 +42,8 @@ router.get('/signin',(req,res,next)=>{ res.render('sign-in'); })
 
  router.get('/students/courses', Student.cartCourses);
 
+ // get the session data
+ router.get('/get_session_data', Student.getSessionData);
 
 
 
