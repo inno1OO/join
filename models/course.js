@@ -8,6 +8,8 @@ const courseSchema = new mongoose.Schema({
   instructor: { type: String, required: true },
   price: { type: Number, required: true }
 });
+
+
 const categories = ['Programming', 'Graphic Design', 'Database'];
 
 const Course = mongoose.model('Course', courseSchema);

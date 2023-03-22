@@ -30,3 +30,7 @@ exports.getAllCourses = async(req, res) => {
 }
 
 
+exports.getCourseById = async (courseId) => {
+    const course = await Course.findById({courseId})
+  render('single-course', {course})  
+}
