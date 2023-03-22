@@ -26,6 +26,6 @@ router.get('/:id', async (req, res) => {
 });
 
 module.exports = router;
-
+router.post('/:category',Course.displayByCategory);
 
 module.exports = router

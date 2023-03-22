@@ -6,6 +6,9 @@ const courseSchema = new mongoose.Schema({
   description: { type: String, required: true },
   category: { type: String, required: true },
   instructor: { type: String, required: true },
+  length: { type: String, required: true },
+  level: { type: String, required: true },
+  cover: { type: String, required: true },
   price: { type: Number, required: true }
 });
 
@@ -13,11 +16,12 @@ const courseSchema = new mongoose.Schema({
 const categories = ['Programming', 'Graphic Design', 'Database'];
 
 const Course = mongoose.model('Course', courseSchema);
+
 // Course.insertMany([
-//   { name: 'JavaScript For Beginner', description:' It a java course for new programmer',  category: categories[0], instructor:'Sridevi', price: 64.99  },
-//   { name: 'Java From Scratch',description:' It a javaScript course for new programmer',  category: categories[0], instructor:'Sridevi', price: 45.99},
-//   { name: 'Introduction to OOP in C#',description:'C# course for learning all OOP concepts',  category: categories[0],instructor:'Sridevi', price: 36.99}
-// ]);
+//     { name: 'JavaScript For Beginner', description:' It a java course for new programmer',  category: categories[0], instructor:'Sridevi',length:'3h30mm',level:'Advance',cover:'/photos/myphoto.jpg', price: 64.99  },
+//     { name: 'Java From Scratch',description:' It a javaScript course for new programmer',  category: categories[0], instructor:'Sridevi',length:'3h30mm',level:'Advance',cover:'/photos/myphoto.jpg', price: 45.99},
+//     { name: 'Introduction to OOP in C#',description:'C# course for learning all OOP concepts',  category: categories[0],instructor:'Sridevi',length:'3h30mm',level:'Advance',cover:'/photos/myphoto.jpg', price: 36.99}
+// ])
 
 module.exports = Course;
 

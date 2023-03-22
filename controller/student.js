@@ -82,3 +82,59 @@ exports.signUp=async(req, res, send)=>{
       });
 
 }
+
+
+// router.get('/enroll', (req, res) => {
+//   // check if user is logged in
+//   if (req.session.email) {
+//     // render dashboard page with session data
+
+//     res.send(req.session.email+", "+req.session.password+" "+req.session._id);
+//     // res.render('dashboard', { username: req.session.email });
+//   } else {
+//     // redirect to login page
+//     // res.redirect('/login');
+//     res.send("No session");
+//   }
+// });
+
+exports.enrollCourse=async (req,res,next)=>{
+
+  if (req.session.email) {
+
+    const student = await Student.findById(req.session._id);
+    const course = await Course.findById(req.params.courseId);
+    if (!student || !course) {
+      return res.status(404).send({ error: 'Student or course not found!' });
+    }else{
+      student.courses.push(course._id);
+      await student.save();
+      return res.redirect('/user/user');
+
+    }
+
+  }else{
+    return res.redirect('/user/signin');
+  }
+
+}
+
+
+
+// async (req, res) => {
+
+
+  
+//   try {
+//     const student = await Student.findById(req.params.studentId);
+//     const course = await Course.findById(req.params.courseId);
+//     if (!student || !course) {
+//       return res.status(404).send({ error: 'Student or course not found!' });
+//     }
+//     student.courses.push(course._id);
+//     await student.save();
+//     res.send(student);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
