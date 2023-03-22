@@ -25,7 +25,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/joindb', { useNewUrlParser: true, us
     })
 
     app.use(session({
-        secret: 'top-secret', resave: false, saveUninitialized: true
+        secret: 'top-secret', resave: false, saveUninitialized: true,cookie: {
+            maxAge: 3600000 // 1 hour
+          }
     }));
 
 //using the router
