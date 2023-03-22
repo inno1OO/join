@@ -44,7 +44,7 @@ router.get('/signin',(req,res,next)=>{
 
  // get the session data
  router.get('/get_session_data', Student.getSessionData);
- router.post('/sign_out', Student.signOut);
+ router.get('/sign_out', Student.signOut);
 
 
 
