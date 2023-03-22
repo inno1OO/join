@@ -42,9 +42,11 @@ exports.signIn=async(req, res, next) => {
   }
   else{
     req.session.email = req.body.email;
+
+    req.session.name = student.name;
     req.session.password =student.password;
     req.session._id =student._id;
-console.log(req.session);
+    console.log(req.session);
    
     res.redirect('/');
   }
