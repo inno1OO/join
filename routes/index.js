@@ -12,14 +12,7 @@ const userRoute = require("./user")
 const Course = require('../controller/course');
 
 
-router.get('/', Course.getAllCourses
-
-//(req, res) => 
-//{
-//     res.render('index', {pageTitle:'Home', cat: courseRoute.categories})
-// }
-
-);
+router.get('/', Course.getAllCourses);
 
 // router.use('/', myRoute );
 router.use('/course', courseRoute );
@@ -27,3 +20,8 @@ router.use('/user', userRoute );
 
 
 module.exports = router;
+
+//(req, res) => 
+//{
+//     res.render('index', {pageTitle:'Home', cat: courseRoute.categories})
+// }

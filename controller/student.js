@@ -1,5 +1,6 @@
 const Student = require('../models/student.js')
 const Course = require('../models/course');
+const { ObjectID } = require('mongodb');
 
 exports.saveStudents = (req, res) => {
     let studentSave = new student(req.body)
@@ -13,19 +14,6 @@ exports.getStudent = (req, res) => {
     res.render('user', {studentData:student})
 }
 
-// exports.getStudentById = (req, res) => {
-//     // let stud = Student.find({})
-// console.log("Here we are");
-// res.send("Here we are")
-
-// }
-
-// exports.getStudentById = (req, res) => {
-//     // let stud = Student.find({})
-// console.log("Here we are");
-// res.send("Here we are")
-
-// }
 
 exports.signIn=async(req, res, next) => {
   const email = req.body.email;
@@ -46,7 +34,7 @@ exports.signIn=async(req, res, next) => {
     req.session.name = student.name;
     req.session.password =student.password;
     req.session._id =student._id;
-    console.log(req.session);
+    //console.log(req.session);
    
     res.redirect('/');
   }
@@ -54,11 +42,8 @@ exports.signIn=async(req, res, next) => {
 }
 
 
-
-
-
-
 exports.signUp=async(req, res, send)=>{
+  
     Student.findOne({
         email: req.body.email
       }).then(student => {
@@ -91,44 +76,31 @@ exports.signUp=async(req, res, send)=>{
 }
 
 
-// router.get('/enroll', (req, res) => {
-//   // check if user is logged in
-//   if (req.session.email) {
-//     // render dashboard page with session data
 
-//     res.send(req.session.email+", "+req.session.password+" "+req.session._id);
-//     // res.render('dashboard', { username: req.session.email });
-//   } else {
-//     // redirect to login page
-//     // res.redirect('/login');
-//     res.send("No session");
-//   }
-// });
 
 exports.enrollCourse=async (req,res,next)=>{
-
-  //const student = await Student.findById(req.session._id);
-  // const course = await Course.findById(req.params.courseId);
-
-
-  //console.log(req.session._id);
-
-  //console.log(student);
-  // console.log(course);
 
   if (req.session.email) {
 
     const student = await Student.findById(req.session._id);
     const course = await Course.findById(req.params.courseId);
 
-    console.log(student);
-    console.log(course);
+    // console.log(student);
+    // console.log(course);
     if (!student || !course) {
       return res.status(404).send({ error: 'Student or course not found!' });
     }else{
+
+      if (student.courses.includes(course._id)) {
+        return res.status(409).json({ error: 'Student is already enrolled in the course' });
+      }
+      else{
+      
       student.courses.push(course._id);
       await student.save();
       return res.redirect('/user');
+
+    }
 
     }
 
@@ -154,7 +126,7 @@ exports.signOut=async (req,res,next)=>{
 
 exports.cartCourses=async (req, res) => {
   try {
-    const student = await Student.findById(req.session._id).populate('course');
+    const student = await Student.findById(req.session._id).populate('courses');
     if (!student) {
       return res.status(404).send({ error: 'Student not found!' });
     }
@@ -182,40 +154,6 @@ exports.readStudentCourseById=async (req, res) => {
 
 
 
-// router.put('/students/:id/courses/:courseId', async (req, res) => {
-//   try {
-//     const studentId = req.params.id;
-//     const courseId = req.params.courseId;
-
-//     // Find the student by ID
-//     const student = await Student.findById(studentId);
-//     if (!student) {
-//       return res.status(404).json({ message: 'Student not found' });
-//     }
-
-//     // Find the course by ID
-//     const course = await Course.findById(courseId);
-//     if (!course) {
-//       return res.status(404).json({ message: 'Course not found' });
-//     }
-
-//     // Remove the course from the student's enroll course list
-//     const updatedStudent = await Student.findByIdAndUpdate(
-//       studentId,
-//       { $pull: { enrollCourses: courseId } },
-//       { new: true }
-//     );
-
-//     res.json(updatedStudent);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// });
-
-// module.exports = router;
-
-
 exports.getSessionData = (req, res) => {
   let ses =  req.session ;
   if (req.session.email) {
@@ -225,20 +163,3 @@ exports.getSessionData = (req, res) => {
 }
 }
 
-// async (req, res) => {
-
-
-  
-//   try {
-//     const student = await Student.findById(req.params.studentId);
-//     const course = await Course.findById(req.params.courseId);
-//     if (!student || !course) {
-//       return res.status(404).send({ error: 'Student or course not found!' });
-//     }
-//     student.courses.push(course._id);
-//     await student.save();
-//     res.send(student);
-//   } catch (error) {
-//     res.status(500).send(error);
-//   }
-// });

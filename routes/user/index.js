@@ -13,14 +13,6 @@ router.get('/', (req, res) => {
     res.render('user', {pageTitle:'User', user: req.body, cat:categories, courseList: Student.cartCourses})
 });
 
-//Student.getStudent
-
-
-//router.get('/:id',Student.getStudent );
-
-// router.get('/signup',Student.getStudentById);
-
-// router.get('/signup',Student.signUp);
 
 router.get('/signup',(req,res,next)=>{
     
