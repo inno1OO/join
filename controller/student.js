@@ -126,7 +126,7 @@ exports.signOut=async (req,res,next)=>{
 
 exports.cartCourses=async (req, res) => {
   try {
-    const student = await Student.findById(req.session._id).populate('course');
+    const student = await Student.findById(req.session._id).populate('courses');
     if (!student) {
       return res.status(404).send({ error: 'Student not found!' });
     }
