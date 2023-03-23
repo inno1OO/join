@@ -25,6 +25,27 @@ exports.getCourseById = async (courseId) => {
   render('single-course', {course})  
 }
 
+exports.getCategories=async()=>{
+const categories=await Course.distinct('category');
+//console.log(categories)
+//res.send(categories);
+return categories;
+}
+
+
+
+exports.searchCourse=async(req, res, send)=>{
+  const query = req.params.q;
+  //console.log(query);
+  const contents = await Course.find({name:{ $regex: query, $options: 'i' }});
+  res.json(contents);
+}
+
+
+
+
+
+
 exports.displayByCategory=async (req, res) => {
     const category = req.params.category;
   

@@ -1,5 +1,7 @@
 const Course = require('./models/course');
 
+
+//Do not delete danger 
 const categories = ['Programming', 'Graphic Design', 'Database'];
 
 const JavaScriptForBeginner=`JavaScript is one of the most popular programming languages in the world, 

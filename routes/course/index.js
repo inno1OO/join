@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 router.get('/', Course.getAllCourses);
 
 
-
+// router.get('/categories', Course.getCategories);
 
 
 // Define route to display single course
@@ -25,6 +25,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+router.get('/search/:q', Course.searchCourse);
 
 router.get('/category/:category',Course.displayByCategory);
 
