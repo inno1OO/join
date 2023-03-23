@@ -32,14 +32,10 @@ router.get('/signin',(req,res,next)=>{
 
 
  router.get('/enroll/:courseId',Student.enrollCourse);
-
-
-<<<<<<< HEAD
- router.get('/student/courses', Student.cartCourses);
+ 
  router.post('/student/update',Student.updateStudent);
-=======
+
  router.get('/', Student.cartCourses);
->>>>>>> 472bd691091c89c2cc1b7af04f58ca32269a38fd
 
  // get the session data
  router.get('/get_session_data', Student.getSessionData);
