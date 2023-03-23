@@ -33,6 +33,7 @@ router.get('/signin',(req,res,next)=>{
 
 
  router.get('/student/courses', Student.cartCourses);
+ router.post('/student/update',Student.updateStudent);
 
  // get the session data
  router.get('/get_session_data', Student.getSessionData);
