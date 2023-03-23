@@ -12,14 +12,6 @@ router.get('/', (req, res) => {
     res.render('user', {pageTitle:'User', user: req.body})
 });
 
-//Student.getStudent
-
-
-//router.get('/:id',Student.getStudent );
-
-// router.get('/signup',Student.getStudentById);
-
-// router.get('/signup',Student.signUp);
 
 router.get('/signup',(req,res,next)=>{
     res.render('sign-up', {pageTitle:'User Sign Up', cat:categories});
