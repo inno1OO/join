@@ -88,11 +88,11 @@ exports.enrollCourse=async (req,res,next)=>{
     // console.log(student);
     // console.log(course);
     if (!student || !course) {
-      return res.status(404).send({ error: 'Student or course not found!' });
+      return res.status(404).send({ error: 'User or course not found!' });
     }else{
 
       if (student.courses.includes(course._id)) {
-        return res.status(409).json({ error: 'Student is already enrolled in the course' });
+        return res.status(409).json({ error: 'User is already enrolled in the course' });
       }
       else{
       
@@ -128,7 +128,7 @@ exports.cartCourses=async (req, res) => {
   try {
     const student = await Student.findById(req.session._id).populate('courses');
     if (!student) {
-      return res.status(404).send({ error: 'Student not found!' });
+      return res.status(404).send({ error: 'User not found!' });
     }
     res.send(student.courses);
   } catch (error) {
@@ -140,11 +140,11 @@ exports.readStudentCourseById=async (req, res) => {
   try {
     const student = await Student.findById(req.params.studentId).populate('courses');
     if (!student) {
-      return res.status(404).send({ error: 'Student not found!' });
+      return res.status(404).send({ error: 'User not found!' });
     }
     const course = student.courses.find(course => course._id.toString() === req.params.courseId);
     if (!course) {
-      return res.status(404).send({ error: 'Course not found or student is not enrolled in this course!' });
+      return res.status(404).send({ error: 'Course not found or User is not enrolled in this course!' });
     }
     res.send(course);
   } catch (error) {

@@ -32,7 +32,7 @@ router.get('/signin',(req,res,next)=>{
  router.get('/enroll/:courseId',Student.enrollCourse);
 
 
- router.get('/students/courses', Student.cartCourses);
+ router.get('/student/courses', Student.cartCourses);
 
  // get the session data
  router.get('/get_session_data', Student.getSessionData);

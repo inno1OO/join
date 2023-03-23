@@ -25,6 +25,12 @@ exports.getCourseById = async (courseId) => {
   render('single-course', {course})  
 }
 
+exports.getCategories=async()=>{
+const categories=await Course.distinct('category');
+//console.log(categories)
+//res.send(categories);
+}
+
 exports.displayByCategory=async (req, res) => {
     const category = req.params.category;
   

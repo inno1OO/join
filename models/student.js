@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Product = require('./course');
 const { Schema } = mongoose;
 
 
