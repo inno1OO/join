@@ -1,5 +1,6 @@
 const Student = require('../models/student.js')
 const Course = require('../models/course');
+const { ObjectID } = require('mongodb');
 
 exports.saveStudents = (req, res) => {
     let studentSave = new student(req.body)
@@ -79,28 +80,27 @@ exports.signUp=async(req, res, send)=>{
 
 exports.enrollCourse=async (req,res,next)=>{
 
-  //const student = await Student.findById(req.session._id);
-  // const course = await Course.findById(req.params.courseId);
-
-
-  //console.log(req.session._id);
-
-  //console.log(student);
-  // console.log(course);
-
   if (req.session.email) {
 
     const student = await Student.findById(req.session._id);
     const course = await Course.findById(req.params.courseId);
 
-    console.log(student);
-    console.log(course);
+    // console.log(student);
+    // console.log(course);
     if (!student || !course) {
       return res.status(404).send({ error: 'Student or course not found!' });
     }else{
+
+      if (student.courses.includes(course._id)) {
+        return res.status(409).json({ error: 'Student is already enrolled in the course' });
+      }
+      else{
+      
       student.courses.push(course._id);
       await student.save();
       return res.redirect('/user');
+
+    }
 
     }
 
