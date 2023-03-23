@@ -6,14 +6,16 @@ const Student = require('../../controller/student');
 
 const Course = require('../../controller/course');
 // const Course = require('../../models/course');
-router.get('/', (req, res) => {
-    // res.render('user', {pageTitle:'User', cat: Course.categories})
-    console.log()
-    res.render('user', {pageTitle:'User', user: req.body})
-});
+// router.get('/', (req, res) => {
+//     // res.render('user', {pageTitle:'User', cat: Course.categories})
+//     // let enrollCourses = Student.cartCourses;
+//     console.log()
+    
+// });
 
 
 router.get('/signup',(req,res,next)=>{
+    
     res.render('sign-up', {pageTitle:'User Sign Up', cat:categories});
 })
 
@@ -32,8 +34,12 @@ router.get('/signin',(req,res,next)=>{
  router.get('/enroll/:courseId',Student.enrollCourse);
 
 
+<<<<<<< HEAD
  router.get('/student/courses', Student.cartCourses);
  router.post('/student/update',Student.updateStudent);
+=======
+ router.get('/', Student.cartCourses);
+>>>>>>> 472bd691091c89c2cc1b7af04f58ca32269a38fd
 
  // get the session data
  router.get('/get_session_data', Student.getSessionData);

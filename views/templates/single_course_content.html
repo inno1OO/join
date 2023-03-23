@@ -42,7 +42,7 @@
                                                 <!-- Toggle -->
                                                 <a class=" h4 mb-0 d-flex align-items-center text-inherit text-decoration-none active" data-bs-toggle="collapse" href="#courseTwo" aria-expanded="true" aria-controls="courseTwo">
                                                     <div class="me-auto">
-                                                        Introduction to JavaScript
+                                                        Introduction to <%= courses.name %>
                                                     </div>
                                                     <!-- Chevron -->
                                                     <span class="chevron-arrow ms-4">
@@ -102,7 +102,7 @@
                                                 <a class="h4 mb-0 d-flex align-items-center text-inherit text-decoration-none" data-bs-toggle="collapse" href="#courseThree" aria-expanded="false" aria-controls="courseThree">
                                                     <div class="me-auto">
                                                         <!-- Title -->
-                                                        JavaScript Beginning
+                                                        <%= courses.name %> Beginning
                                                     </div>
                                                     <!-- Chevron -->
                                                     <span class="chevron-arrow ms-4">
@@ -1003,11 +1003,10 @@
                                 <div class="mb-4">
                                     <h3 class="mb-2">Course Descriptions</h3>
                                     <p>
-                                        If you’re learning to program for the first time, or if you’re coming from a different language, this course, JavaScript: Getting Started, will give you the basics for coding in JavaScript. First, you'll discover the types of applications that can be
-                                        built with JavaScript, and the platforms they’ll run on.
+                                        <%= courses.description %>
                                     </p>
                                     <p>
-                                        Next, you’ll explore the basics of the language, giving plenty of examples. Lastly, you’ll put your JavaScript knowledge to work and modify a modern, responsive web page. When you’re finished with this course, you’ll have the skills and knowledge in JavaScript
+                                        Next, you’ll explore the basics of the language, giving plenty of examples. Lastly, you’ll put your <%= courses.name %> knowledge to work and modify a modern, responsive web page. When you’re finished with this course, you’ll have the skills and knowledge in <%= courses.name %>
                                         to create simple programs, create simple web applications, and modify web pages.
                                     </p>
                                 </div>
@@ -1047,8 +1046,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <p>Maecenas viverra condimentum nulla molestie condimentum. Nunc ex libero, feugiat quis lectus vel, ornare euismod ligula. Aenean sit amet arcu nulla.</p>
-                                <p>Duis facilisis ex a urna blandit ultricies. Nullam sagittis ligula non eros semper, nec mattis odio ullamcorper. Phasellus feugiat sit amet leo eget consectetur.</p>
+                              
                             </div>
                             <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                                 <!-- Reviews -->
@@ -1340,13 +1338,13 @@
                     <!-- Card body -->
                     <div class="card-body">
                         <!-- Price single page -->
-                        <div class="mb-3">
-                            <span class="text-dark fw-bold h2">$600</span>
-                            <del class="fs-4 text-muted">$750</del>
+                        <div class="mb-3 <%= courses._id %>">
+                            <span class="text-dark fw-bold h2"><%= courses.price %></span>
+                            <del class="fs-4 text-muted">$<%= parseInt(courses.price) + 25 %></del>
                         </div>
                         <div class="d-grid">
-                        <a href="#" class="btn btn-primary mb-2  ">Start Free Month</a>
-                        <a href="pricing.html" class="btn btn-outline-primary">Get Full Access</a>
+                        <!-- <a href="#" class="btn btn-primary mb-2  ">Start Free Month</a> -->
+                        <a href="/user/enroll/<%= courses._id %>" class="btn btn-outline-primary <%= courses._id %>">Get Full Access</a>
                     </div>
                     </div>
                 </div>

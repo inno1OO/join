@@ -1,7 +1,7 @@
 const Student = require('../models/student.js')
 const Course = require('../models/course');
 const { ObjectID } = require('mongodb');
-
+const categories = ['Programming', 'Graphic Design', 'Database'];
 exports.saveStudents = (req, res) => {
     let studentSave = new student(req.body)
     studentSave.save()
@@ -34,6 +34,7 @@ exports.signIn=async(req, res, next) => {
     req.session.name = student.name;
     req.session.password =student.password;
     req.session._id =student._id;
+    req.session.courses = student.courses;
     //console.log(req.session);
    
     res.redirect('/');
@@ -97,6 +98,7 @@ exports.enrollCourse=async (req,res,next)=>{
       else{
       
       student.courses.push(course._id);
+      req.session.courses.push(course._id);
       await student.save();
       return res.redirect('/user');
 
@@ -146,7 +148,8 @@ exports.cartCourses=async (req, res) => {
     if (!student) {
       return res.status(404).send({ error: 'User not found!' });
     }
-    res.send(student.courses);
+    res.render('user', {pageTitle:'User',  courseList: student.courses, cat: categories})
+    // res.send(student.courses);
   } catch (error) {
     res.status(500).send(error);
   }
