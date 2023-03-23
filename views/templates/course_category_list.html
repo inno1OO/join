@@ -68,10 +68,9 @@ for(let cate in cat){ %>
                                 <div class="col ms-2">
                                     <span><%= courses[courseDetails].instructor %></span>
                                 </div>
-                                <div class="col-auto">
-                                    <a href="#" class="text-muted bookmark">
-                                        <i class="fe fe-bookmark  "></i>
-                                    </a>
+                                <div class="col-auto ">
+                                    <a href="/user/enroll/<%= courses[courseDetails]._id %>" class="enrollBtn"><button class="btn btn-xs btn-outline-primary ">Enroll</button></a>
+                                  
                                 </div>
                             </div>
                         </div>

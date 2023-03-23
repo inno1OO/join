@@ -79,13 +79,16 @@
                    var email = document.getElementById('emailId');
                    email.innerText = response.email;
                    name.innerText = response.name;
-                    // $('#signInUpDiv').hide();
-                    console.log('Session data:', response); 
-                }else{
+                   document.getElementsByClassName('enrollBtn').disabled = true;
                    
+                    // $('#signInUpDiv').hide();
+                    // console.log('Session data:', response); 
+                }else{
+                   document.getElementsByClassName('enrollBtn').disabled = true;
+                //    document.getElementById("myBtn").disabled = true;
                    var x = document.getElementById('signInUpDiv');
                    x.style.display = "block";
-                   console.log('Session  fdata:', response); 
+                //    console.log('Session  fdata:', response); 
                 //    var y = document.getElementById('userBlock');
                 //    y.classList.add('invisible');
                     // $('#signInUpDiv').hide(); 
@@ -98,8 +101,7 @@
                 console.log('Error:', errorThrown);
             }
         });
-        });
-     
+
         $("#signInForm").submit(function(){
             $.ajax({
             url: '/user/signin',
@@ -107,12 +109,13 @@
             data: $(this).serialize(),
             success: function(response) {
                 // response contains the session data
-                if (response.rep.trim() != ' invalid') {
-        
-               console.log('Wrong Username or Password!');
+                if (response.rep != 'invalid') {
+                    window.location.replace("/");
+              
              
                 }else{
-                    alert(response.rep);
+                    alert('Wrong Username or Password!'); 
+                    window.location.replace("/user/signin");
                 }
                
                
@@ -122,6 +125,35 @@
             }
         });
         });
+
+
+        $("#signUpForm").submit(function(){
+            $.ajax({
+            url: '/user/signup',
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                console.log('nou la'); 
+                // response contains the session data
+                if (response.rep == 'success') {
+                    alert(response.rep); 
+                    window.location.replace("/user/signin");
+
+                }else{
+                    alert(response); 
+                    window.location.replace("/user/signup");
+                } 
+                           
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log('Error:', errorThrown);
+            }
+        });
+        });
+
+        });
+     
+       
     </script>
     </body>
     

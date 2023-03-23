@@ -65,9 +65,10 @@ exports.signUp=async(req, res, send)=>{
         // Check if student exists
         if (student) {
           // If student exists, return error
-          return res.status(400).json({
-            email: 'Email already exists'
-          });
+          res.send('User already exists')
+          // return res.status(400).json({
+          //   email: 'Email already exists'
+          // });
         } else {
           // If user does not exist, create student
           const newStudent = new Student({
@@ -82,7 +83,8 @@ exports.signUp=async(req, res, send)=>{
             //.then(student => res.json(student))
             .catch(err => console.log(err));
           // res.sendFile(path.join(__dirname, '../views/sign-in.html'));
-          send('success sign up')
+          // send('success')
+          res.json({rep:'success'});
         }
       });
 
@@ -126,7 +128,7 @@ exports.enrollCourse=async (req,res,next)=>{
     }else{
       student.courses.push(course._id);
       await student.save();
-      return res.redirect('/user/user');
+      return res.redirect('/user');
 
     }
 
