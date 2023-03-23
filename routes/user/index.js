@@ -6,12 +6,12 @@ const Student = require('../../controller/student');
 
 const Course = require('../../controller/course');
 // const Course = require('../../models/course');
-router.get('/', (req, res) => {
-    // res.render('user', {pageTitle:'User', cat: Course.categories})
-    // let enrollCourses = Student.cartCourses;
-    console.log()
-    res.render('user', {pageTitle:'User', user: req.body, cat:categories, courseList: Student.cartCourses})
-});
+// router.get('/', (req, res) => {
+//     // res.render('user', {pageTitle:'User', cat: Course.categories})
+//     // let enrollCourses = Student.cartCourses;
+//     console.log()
+    
+// });
 
 
 router.get('/signup',(req,res,next)=>{
@@ -34,7 +34,7 @@ router.get('/signin',(req,res,next)=>{
  router.get('/enroll/:courseId',Student.enrollCourse);
 
 
- router.get('/student/courses', Student.cartCourses);
+ router.get('/', Student.cartCourses);
 
  // get the session data
  router.get('/get_session_data', Student.getSessionData);

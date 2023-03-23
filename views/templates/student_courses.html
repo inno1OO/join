@@ -7,25 +7,27 @@
           <li class="nav-item" role="presentation">
             <a class="nav-link active" id="currentlyLearning-tab" data-bs-toggle="pill" href="#currentlyLearning" role="tab" aria-controls="currentlyLearning" aria-selected="true" tabindex="-1">Learning</a>
           </li>
-        
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" data-bs-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false" tabindex="-1">Profile</a>
+          </li>
         </ul>
         <!-- Tab content -->
         <div class="tab-content" id="tabContent">
         
           <div class="tab-pane fade show active" id="currentlyLearning" role="tabpanel" aria-labelledby="currentlyLearning-tab">
             <div class="row">
+              <% for(let ele in courseList){ %>
               <div class="col-lg-3 col-md-6 col-12">
                 <!-- Card -->
                 <div class="card  mb-4 card-hover">
-                  <a href="#" class="card-img-top"><img src="../assets/images/course/course-react.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                  <a href="/course/<%= courseList[ele]._id %>" class="card-img-top"><img src="../assets/images/course/course-react.jpg" alt="" class="card-img-top rounded-top-md"></a>
                   <!-- Card body -->
                   <div class="card-body">
-                    <h3 class="h4 mb-2 text-truncate-line-2 "><a href="#" class="text-inherit">How to easily create a
-                        website with React</a>
+                    <h3 class="h4 mb-2 text-truncate-line-2 "><a href="/course/<%= courseList[ele]._id %>" class="text-inherit"><%= courseList[ele].name %></a>
                     </h3>
                     <!-- List inline -->
                     <ul class="mb-3  list-inline">
-                      <li class="list-inline-item"><i class="mdi mdi-clock-time-four-outline text-muted me-1"></i>3h 56m
+                      <li class="list-inline-item"><i class="mdi mdi-clock-time-four-outline text-muted me-1"></i><%= courseList[ele].length %>
                       </li>
                       <li class="list-inline-item"><svg class="me-1 mt-n1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <rect x="3" y="8" width="2" height="6" rx="1" fill="#754FFE">
@@ -34,7 +36,7 @@
                           </rect>
                           <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9">
                           </rect>
-                        </svg>Beginner </li>
+                        </svg><%= courseList[ele].level %> </li>
                     </ul>
                     <div class="lh-1">
                       <span>
@@ -55,7 +57,7 @@
                         <img src="../assets/images/avatar/avatar-6.jpg" class="rounded-circle avatar-xs" alt="">
                       </div>
                       <div class="col ms-2">
-                        <span>Morris Mccoy</span>
+                        <span><%= courseList[ele].instructor %></span>
                       </div>
                       <div class="col-auto">
                          <a href="#" class="removeBookmark">
@@ -69,11 +71,15 @@
                   </div>
                 </div>
               </div>
-             
+             <% } %>
               
             
             </div>
            
+          </div>
+
+          <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <%- include('profile.html') %>
           </div>
           <!-- Path -->
           <div class="tab-pane fade" id="path" role="tabpanel" aria-labelledby="path-tab">

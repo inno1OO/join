@@ -7,7 +7,7 @@
                 <div>
                     <h1 class="text-white display-4 fw-semi-bold">Getting Started with <%= courses.name %></h1>
                     <p class="text-white mb-6 lead">
-                        <%= courses.name %> is the popular programming course in MIU. This course will get you started coding in JavaScript.
+                        <%= courses.name %> is the popular <%= courses.category %> course in MIU. This course will get you started in <%= courses.category %>.
                     </p>
                     <div class="d-flex align-items-center">
                         <a href="#" class="bookmark text-white text-decoration-none">
@@ -31,7 +31,7 @@
               <rect x="11" y="2" width="2" height="12" rx="1" fill="#DBD8E9"></rect>
             </svg>
             <span class="align-middle">
-              Intermediate
+                <%= courses.level %>
             </span>
                         </span>
                     </div>

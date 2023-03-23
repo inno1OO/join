@@ -75,12 +75,19 @@
                    var y = document.getElementById('userBlock');
                    y.style.display = "block";
 
-                   var name = document.getElementById('nameId');
-                   var email = document.getElementById('emailId');
-                   email.innerText = response.email;
-                   name.innerText = response.name;
-                   document.getElementsByClassName('enrollBtn').disabled = true;
+                //    var name = document.getElementsByClassName('nameClass');
+                //    var email = document.getElementsByClassName('emailClass');
+                //    email.innerHTML = response.email;
+                //    name.innerText = response.name;
+                   $('.nameClass').text(response.name);
+                   $('.emailClass').text(response.email);
+                  
                    
+                   response.courses.forEach(element => {
+                    // $('.'+element).prop( "disabled", true );
+                    // $('.'+element).removeAttr('href');
+                    $('.'+element).hide();
+                    });
                     // $('#signInUpDiv').hide();
                     // console.log('Session data:', response); 
                 }else{
