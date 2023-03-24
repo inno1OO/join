@@ -129,7 +129,7 @@ exports.updateStudent=async(req,res)=>{
   const userId = req.session.id;
   try {
   const std=Student.updateOne(
-  { _id: ObjectID(userId) },
+  { _id: userId },
   { $set: { name, address, birthday, country, state, phone } });
   res.send(std);
   }
