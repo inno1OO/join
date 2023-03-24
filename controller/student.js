@@ -126,10 +126,11 @@ exports.signOut=async (req,res,next)=>{
 }
 exports.updateStudent=async(req,res)=>{
   const { name,gender, email, birthday, address, phone, country, state} = req.body;
+  console.log(req.body)
 
   const userId = req.session._id;
   try {
-  const std=Student.updateOne(
+  const std=Student.findByIdAndUpdate(
     { _id:new ObjectId(userId)},
   { $set: { email,gender, name, address, birthday, country, state, phone } });
   // res.json(std);
