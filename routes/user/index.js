@@ -33,7 +33,7 @@ router.get('/signin',(req,res,next)=>{
 
  router.get('/enroll/:courseId',Student.enrollCourse);
  
- router.get('/student/update',Student.updateStudent);
+ router.post('/',Student.updateStudent);
 
  router.get('/', Student.cartCourses);
 
