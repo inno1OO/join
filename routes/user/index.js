@@ -41,6 +41,8 @@ router.get('/signin',(req,res,next)=>{
  router.get('/get_session_data', Student.getSessionData);
  router.get('/sign_out', Student.signOut);
 
+ router.get('/remove/:courseId', Student.removeStdCourse);
+
  
 
 

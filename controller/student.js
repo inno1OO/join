@@ -132,8 +132,10 @@ exports.updateStudent=async(req,res)=>{
   const std=Student.updateOne(
     { _id:new ObjectId(userId)},
   { $set: { email,gender, name, address, birthday, country, state, phone } });
-  res.send(std);
-  console.log(std);
+  // res.json(std);
+
+  res.send('ok');
+  //console.log(std);
   }
   catch(err){
     console.error(err);
@@ -184,3 +186,33 @@ exports.getSessionData = (req, res) => {
 }
 }
 
+
+
+exports.removeStdCourse=async (req, res) => {
+  try {
+    const studentId = req.session._id;
+    const courseId = req.params.courseId;
+
+    const student = await Student.findById(studentId);
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    // Remove the course from student
+    const updatedStudent = await Student.findByIdAndUpdate(
+      studentId,
+      { $pull: { courses: courseId } },
+      { new: true }
+    );
+
+    res.json(updatedStudent);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
