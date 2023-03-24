@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/search/:q', Course.searchCourse);
+router.post('/search/:q', Course.searchCourse);
 
 router.get('/category/:category',Course.displayByCategory);
 

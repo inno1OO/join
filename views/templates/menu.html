@@ -117,16 +117,27 @@
 				</li>
 
 			</ul>
-			<form class="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center">
+			<form class="mt-3 mt-lg-0 ms-lg-3 d-flex align-items-center" >
 				<span class="position-absolute ps-3 search-icon">
 					<i class="fe fe-search"></i>
 				</span>
 				<input
+					id="searchInputId"
 					type="search"
 					class="form-control ps-6"
 					placeholder="Search Courses"
+					oninput="searchCourses()"
 				/>
+				<div class="form-control ps-6 col-lg-3" id="resultDiv" 
+				style="list-style:none; position: absolute; width: 350px; top: 60px; 
+				border-style: none; display: none; height: 400px;  overflow: visible; z-index: 1;
+				text-decoration: none !important;">
+					<!-- <ul  id="selectForm"
+						></ul> -->
+				</div>
+				
 			</form>
+			
 			
 			<ul class="navbar-nav navbar-right-wrap ms-auto d-none d-lg-block" id="userBlock" style="display: none !important;">
 				<li class="dropdown d-inline-block stopevent">
