@@ -1,6 +1,6 @@
 const Student = require('../models/student.js')
 const Course = require('../models/course');
-const { ObjectID } = require('mongodb');
+const { ObjectId } = require('mongodb');
 const categories = ['Programming', 'Graphic Design', 'Database'];
 exports.saveStudents = (req, res) => {
     let studentSave = new student(req.body)
@@ -125,13 +125,15 @@ exports.signOut=async (req,res,next)=>{
 
 }
 exports.updateStudent=async(req,res)=>{
-  const { name, address, birthday,country, state, phone } = req.body;
-  const userId = req.session.id;
+  const { name,gender, email, birthday, address, phone, country, state,} = req.body;
+
+  const userId = req.session._id;
   try {
   const std=Student.updateOne(
-  { _id: userId },
-  { $set: { name, address, birthday, country, state, phone } });
-  res.send(std);
+    { _id:new ObjectId(userId)},
+  { $set: { email,gender, name, address, birthday, country, state, phone } });
+  //res.send(std);
+  console.log(std);
   }
   catch(err){
     console.error(err);
