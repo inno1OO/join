@@ -27,7 +27,7 @@ for(let cate in cat){ %>
                 <div class="item">
                     <!-- Card -->
                     <div class="card  mb-4 card-hover">
-                        <a href="/course/<%= courses[courseDetails]._id %>" class="card-img-top"><img src="/assets/images/course/course-html.jpg" alt="" class="rounded-top-md card-img-top"></a>
+                        <a href="/course/<%= courses[courseDetails]._id %>" class="card-img-top"><img src="<%= courses[courseDetails].cover %>" alt="" class="rounded-top-md card-img-top"></a>
                         <!-- Card Body -->
                         <div class="card-body">
                             <h4 class="mb-2 text-truncate-line-2 "><a href="/course/<%= courses[courseDetails]._id %>" class="text-inherit"><%= courses[courseDetails].name %></a></h4>
