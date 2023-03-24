@@ -160,7 +160,7 @@ Course.insertMany([
     { name: 'Front End Development With React',description:FrontEndDevelopmentWithReact,  category: categories[0], instructor:'Najeeb Najeeb',length:'7h30mm',level:'Beginner',cover:'/public/assets/images/course/programming.png', price: 45.99},
     { name: 'Master Flyer Creation With Canva',description:MasterFlyerCreationWithCanva,  category: categories[1], instructor:'John Wesley Jean Baptiste',length:'3h30mm',level:'Beginner',cover:'/public/assets/images/course/graphic.jpg', price: 45.99},
     { name: 'Introduction To SqLite',description:IntroductionToSqLite,  category: categories[2], instructor:'Sridevi Malasani',length:'3h30mm',level:'Beginner',cover:'/public/assets/images/course/db.png', price: 45.99},
-    { name: 'Python From Scratch',description:PythonFromScratch,  category: categories[0], instructor:'Sridevi Malasani',length:'3h30mm',level:'Beginner',cover:'/public/assets/images/course/graphic.jpg', price: 45.99},
+    { name: 'Python From Scratch',description:PythonFromScratch,  category: categories[0], instructor:'Sridevi Malasani',length:'3h30mm',level:'Beginner',cover:'/public/assets/images/course/programming.png', price: 45.99},
     { name: 'Vector Design Illustrator',description:VectorDesignIllustrator,  category: categories[1], instructor:'Valery Sossou',length:'3h30mm',level:'Advanced',cover:'/public/assets/images/course/graphic.jpg', price: 67.99}
      
 ])
