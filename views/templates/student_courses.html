@@ -20,7 +20,7 @@
               <div class="col-lg-3 col-md-6 col-12">
                 <!-- Card -->
                 <div class="card  mb-4 card-hover">
-                  <a href="/course/<%= courseList[ele]._id %>" class="card-img-top"><img src="../assets/images/course/course-react.jpg" alt="" class="card-img-top rounded-top-md"></a>
+                  <a href="/course/<%= courseList[ele]._id %>" class="card-img-top"><img src="<%= courseList[ele].cover %>" alt="" class="card-img-top rounded-top-md"></a>
                   <!-- Card body -->
                   <div class="card-body">
                     <h3 class="h4 mb-2 text-truncate-line-2 "><a href="/course/<%= courseList[ele]._id %>" class="text-inherit"><%= courseList[ele].name %></a>
@@ -59,15 +59,16 @@
                       <div class="col ms-2">
                         <span><%= courseList[ele].instructor %></span>
                       </div>
-                      <div class="col-auto">
-                         <a href="#" class="removeBookmark">
-                          <i class="mdi mdi-bookmark mdi-18px"></i>
-                        </a>
-                      </div>
+                      <div class="col-auto ">
+                        <a href="/user/remove/<%= courseList[ele]._id %>" class="enrollBtn ">
+                            <button class="btn btn-xs btn-outline-primary enrollBtn">Remove</button></a>
+                      
+                    </div>
                     </div>
                     <div class="progress mt-3" style="height: 5px;">
                       <div class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
+                  
                   </div>
                 </div>
               </div>

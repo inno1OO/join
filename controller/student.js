@@ -210,8 +210,9 @@ exports.removeStdCourse=async (req, res) => {
       { $pull: { courses: courseId } },
       { new: true }
     );
-
-    res.json(updatedStudent);
+    res.redirect('/user')
+    // res.render('user', {pageTitle:'User',  courseList: updatedStudent, cat: categories})
+    // res.json(updatedStudent);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });

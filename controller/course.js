@@ -3,7 +3,7 @@ const methodOverride = require('method-override');
 
 const categories = ['Programming', 'Graphic Design', 'Database'];
 
-//const fillDd=require('../fillDb');
+const fillDd=require('../fillDb');
 
 
 
