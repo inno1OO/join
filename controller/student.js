@@ -125,14 +125,14 @@ exports.signOut=async (req,res,next)=>{
 
 }
 exports.updateStudent=async(req,res)=>{
-  const { name,gender, email, birthday, address, phone, country, state,} = req.body;
+  const { name,gender, email, birthday, address, phone, country, state} = req.body;
 
   const userId = req.session._id;
   try {
   const std=Student.updateOne(
     { _id:new ObjectId(userId)},
   { $set: { email,gender, name, address, birthday, country, state, phone } });
-  //res.send(std);
+  res.send(std);
   console.log(std);
   }
   catch(err){
